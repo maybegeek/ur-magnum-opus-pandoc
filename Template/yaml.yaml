@@ -1,0 +1,34 @@
+---
+documentclass: scrartcl
+papersize: a4paper
+classoption:
+    - DIV=9
+    - headinclude=true
+    - footinclude=false
+    - titlepage=true
+    - headsepline=true
+    - toc=bibliography
+    - toc=listof
+# Sprachen
+lang: ngerman
+mainlang: german
+# Inhaltsverzeichnis
+toc: TRUE
+# Schriftgrad
+fontsize: 12pt
+# Farbe der Verlinkungen
+linkcolor: black
+urlcolor: black
+citecolor: black
+# Schriften
+mainfont: "Adobe Garamond Pro"
+sansfont: "Adobe Garamond Pro"
+monofont: "Droid Sans Mono"
+mathfont: "Adobe Garamond Pro"
+# frontmatter, mainmatter und backmatter
+frontmatter: TRUE
+mainmatter: TRUE
+backmatter: TRUE
+language: 'de-DE'
+#rights: 
+...

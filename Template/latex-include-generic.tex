@@ -1,0 +1,23 @@
+%
+\renewcommand*{\titlepagestyle}{empty}
+%
+\makeatletter
+\g@addto@macro\tableofcontents{\clearpage}
+\makeatother
+%
+\usepackage[german=quotes]{csquotes}
+\MakeOuterQuote{"}
+%
+\deffootnote[2em]{2em}{2.2em}{\thefootnotemark\ }
+%
+\usepackage{varioref}
+% 
+\renewcommand*{\sectionmarkformat}{}
+%
+\makeatletter
+\newif \if@mainmatter \@mainmattertrue
+\newcommand*\frontmatter{\clearpage\@mainmatterfalse\pagenumbering{roman}}
+\newcommand*\mainmatter{\clearpage\@mainmattertrue\pagenumbering{arabic}}
+\newcommand*\backmatter{\clearpage\@mainmatterfalse}
+\makeatother
+%
