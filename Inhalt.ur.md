@@ -104,9 +104,9 @@ Fieberhaft irrten seine Augen durch die nächtliche Dunkelheit und suchten einen
 
 Er konnte die Aufforderung stehen zu bleiben schon hören. Gehetzt sah er sich um. Plötzlich erblickte er den schmalen Durchgang. Blitzartig drehte er sich nach rechts und verschwand zwischen den beiden Gebäuden. Beinahe wäre er dabei über den umgestürzten Mülleimer gefallen, der mitten im Weg lag.
 
-\fullcite{reimann2012}
+\fullcite{reimann:2012}
 
-\fullcite{kubrick:2}
+\fullcite{kubrick:2013}
 
 
 An der Zeit auch mal ein Bild zu verwenden.
