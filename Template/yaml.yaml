@@ -1,6 +1,7 @@
 ---
 documentclass: scrartcl
 papersize: a4paper
+geometry: a4paper
 classoption:
     - DIV=9
     - headinclude=true
@@ -21,10 +22,10 @@ linkcolor: black
 urlcolor: black
 citecolor: black
 # Schriften
-mainfont: "Adobe Garamond Pro"
-sansfont: "Adobe Garamond Pro"
-monofont: "Droid Sans Mono"
-mathfont: "Adobe Garamond Pro"
+mainfont: "EB Garamond"
+sansfont: "Fira Sans"
+monofont: "Fira Mono"
+mathfont: "TeX Gyre Pagella"
 # frontmatter, mainmatter und backmatter
 frontmatter: TRUE
 mainmatter: TRUE

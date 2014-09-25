@@ -17,10 +17,10 @@
   Path=./Template/Fonts/EBGaramond/otf/,%
   UprightFont=EBGaramond12-Regular.otf,%
   BoldFont=EBGaramond12-Regular.otf,%
-  BoldFeatures={FakeBold=0.3},%
+  BoldFeatures={FakeBold=0.8},%
   ItalicFont=EBGaramond12-Italic.otf,%
   BoldItalicFont=EBGaramond12-Italic.otf,%
-  BoldItalicFeatures={FakeBold=0.3},%
+  BoldItalicFeatures={FakeBold=0.8},%
   SmallCapsFont=EBGaramondSC12-Regular.otf%
 ]{EBGaramond}
 
@@ -29,10 +29,10 @@
   Path=./Template/Fonts/EBGaramond/otf/,%
   UprightFont=EBGaramond12-Regular.otf,%
   BoldFont=EBGaramond12-Regular.otf,%
-  BoldFeatures={FakeBold=0.3},%
+  BoldFeatures={FakeBold=0.8},%
   ItalicFont=EBGaramond12-Italic.otf,%
   BoldItalicFont=EBGaramond12-Italic.otf,%
-  BoldItalicFeatures={FakeBold=0.3},%
+  BoldItalicFeatures={FakeBold=0.8},%
   SmallCapsFont=EBGaramondSC12-Regular.otf%
 ]{EBGaramond}
 
@@ -62,6 +62,7 @@
 \usepackage{microtype}
 \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
+\usepackage[a4paper]{geometry}
 
 
 \usepackage[bibstyle=%
@@ -115,7 +116,7 @@ citefilm=full%
 
 \usepackage[ngerman]{babel}
 \usepackage{polyglossia}
-\setdefaultlanguage{german}
+\setdefaultlanguage[spelling=new]{german}
 %\usepackage[autostyle,german=guillemets]{csquotes}
 \usepackage[autostyle,german=quotes]{csquotes}
 \MakeOuterQuote{"}
@@ -127,12 +128,8 @@ citefilm=full%
 \usepackage[automark]{scrlayer-scrpage}
 \pagestyle{scrheadings}
 %
-
-
-\renewcommand*{\newunitpunct}{\adddot\space}
-
-
 %
+\renewcommand*{\newunitpunct}{\adddot\space}
 \renewcommand*{\titlepagestyle}{empty}
 %
 \makeatletter
@@ -154,9 +151,8 @@ citefilm=full%
 \newcommand*\backmatter{\clearpage\thispagestyle{plain}\@mainmatterfalse}
 \makeatother
 %
-
-
-\newbibmacro*{filmtitle}
+%
+\renewbibmacro*{filmtitle}
 {\iffieldundef{maintitle}
 {\printtext{\printfield[film]{title}}}
 {\printfield[film]{maintitle}\newunit}%
@@ -175,8 +171,8 @@ citefilm=full%
 {\addcolon\addspace\printfield[film]{title}}%
 \addspace\mkbibparens{\printfield{year}\iffieldundef{origyear}{}{\printtext{/}\printorigdate}}%
 \ifpunctmark{!}{\unspace .\newunit}{\addcolon}}%
-
-
+%
+%
 \DeclareBibliographyDriver{movie}{%
   \usebibmacro{bibindex}%
   \usebibmacro{begentry}%
@@ -216,7 +212,8 @@ citefilm=full%
  \newunit\newblock
  \usebibmacro{url+urldate}
 \usebibmacro{finentry}}
-
+%
+%
 \DeclareBibliographyDriver{book}{%
   \usebibmacro{bibindex}%
   \usebibmacro{begentry}%
@@ -260,9 +257,9 @@ citefilm=full%
   \newunit\newblock
   \usebibmacro{pageref}%
 \finentry}
-
-  
-\newbibmacro*{director:first-last}[4]{%
+%
+%
+\renewbibmacro*{director:first-last}[4]{%
   \usebibmacro{name:delim}{#1#2#3}%
   \usebibmacro{name:hook}{#1#2#3}%
   \ifblank{#1}{}{\mkbibnamelast{#1}\isdot\addlowpenspace\addcomma\addspace}%
@@ -273,10 +270,9 @@ citefilm=full%
       {\ifuseprefix{\addhighpenspace}{\addlowpenspace}}}%
   \mkbibnamefirst{#2}\isdot
   \ifblank{#4}{}{\addlowpenspace\mkbibnameaffix{#4}\isdot}}
-  
-  
-  
-\newbibmacro*{cite}{%
+%
+%
+\renewbibmacro*{cite}{%
   \global\boolfalse{cbx:loccit}%
   \iffieldundef{shorthand}
     {\ifthenelse{\ifciteibid\AND\NOT\iffirstonpage}
@@ -289,9 +285,9 @@ citefilm=full%
            \setunit{\nameyeardelim}}%
         \printfield{year}\iffieldundef{origyear}{}{\printtext{/}\printorigdate}}}%
     {\usebibmacro{cite:shorthand}}}    
-    
-    
-\newbibmacro*{textcite}{%
+%
+%
+\renewbibmacro*{textcite}{%
   \global\boolfalse{cbx:loccit}%
   \iffieldundef{type}%
   {%
@@ -322,8 +318,9 @@ citefilm=full%
        {\usebibmacro{cite:shorthand}}}}%
        {\printtext[bibhyperref]{\iffieldundef{shorttitle}{\printfield[film]{title}}{\printfield[film]{shorttitle}}\addspace\mkbibparens{\printfield{year}}}}%
 }
-  
-\newbibmacro*{cite:label}{%
+%
+%
+\renewbibmacro*{cite:label}{%
   \ifnameundef{labelname}
     {\BibliographyWarning{Missing author/editor+year or label}}
     {%
@@ -331,8 +328,8 @@ citefilm=full%
     \printtext[bibhyperref]{\printnames{labelname}}}%
     {\printfield{year}\iffieldundef{origyear}{}{\printtext{/}\printorigdate}}%
     }}
-
-
+%
+%
 \renewcommand{\mkbibnamelast}[1]{\textsc{#1}}
 
 
@@ -632,7 +629,6 @@ Prüfungsbehörde vorgelegt.
   (Ort und Datum)    &  & \dotfill                                     \\
   \end{tabular}
   \end{center}
-
 
 
 
