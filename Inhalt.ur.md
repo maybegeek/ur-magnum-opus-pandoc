@@ -111,5 +111,9 @@ Er konnte die Aufforderung stehen zu bleiben schon hören. Gehetzt sah er sich u
 
 An der Zeit auch mal ein Bild zu verwenden.
 
-![Logo der Universität Regensburg](Bilder/logo.png "Logo der Universität Regensburg")
+![Logo der Universität Regensburg (png)](Bilder/ur-logo.png "Logo der Universität Regensburg")
+
+![Logo der Universität Regensburg (jpg)](Bilder/ur-logo.jpg "Logo der Universität Regensburg")
+
+![Logo der Universität Regensburg (pdf)](Bilder/ur-logo.pdf "Logo der Universität Regensburg")
 
