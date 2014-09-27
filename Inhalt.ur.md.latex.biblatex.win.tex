@@ -17,10 +17,10 @@
   Path=./Template/Fonts/EBGaramond/otf/,%
   UprightFont=EBGaramond12-Regular.otf,%
   BoldFont=EBGaramond12-Regular.otf,%
-  BoldFeatures={FakeBold=0.8},%
+  BoldFeatures={FakeBold=1.8},%
   ItalicFont=EBGaramond12-Italic.otf,%
   BoldItalicFont=EBGaramond12-Italic.otf,%
-  BoldItalicFeatures={FakeBold=0.8},%
+  BoldItalicFeatures={FakeBold=1.8},%
   SmallCapsFont=EBGaramondSC12-Regular.otf%
 ]{EBGaramond}
 
@@ -29,10 +29,10 @@
   Path=./Template/Fonts/EBGaramond/otf/,%
   UprightFont=EBGaramond12-Regular.otf,%
   BoldFont=EBGaramond12-Regular.otf,%
-  BoldFeatures={FakeBold=0.8},%
+  BoldFeatures={FakeBold=1.8},%
   ItalicFont=EBGaramond12-Italic.otf,%
   BoldItalicFont=EBGaramond12-Italic.otf,%
-  BoldItalicFeatures={FakeBold=0.8},%
+  BoldItalicFeatures={FakeBold=1.8},%
   SmallCapsFont=EBGaramondSC12-Regular.otf%
 ]{EBGaramond}
 
@@ -519,25 +519,23 @@ Beinahe wäre er dabei über den umgestürzten Mülleimer gefallen, der
 mitten im Weg lag.
 
 \begin{longtable}[c]{@{}ll@{}}
-\caption{Titelblattangaben zum jeweiligen Dokumenttyp.}\\
-\toprule\addlinespace
-Seminararbeit & Abschlussarbeit
-\\\addlinespace
-\midrule\endhead
-Semester & Titel der Arbeit
-\\\addlinespace
-Lehrveranstaltung & Universität
-\\\addlinespace
-Dozent & Fakultät
-\\\addlinespace
-Modul des Leistungsnachweises & Lehrstuhl
-\\\addlinespace
-Verfasser (Name, Matrikelnr.) & Verfasser (Name, Anschrift, Matrikelnr.)
-\\\addlinespace
-Titel der Arbeit & Erst- und Zweitgutachter
-\\\addlinespace
-Abgabedatum & Abgabedatum
-\\\addlinespace
+\caption{Titelblattangaben zum jeweiligen Dokumenttyp.}\tabularnewline
+\toprule
+Seminararbeit & Abschlussarbeit\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+Seminararbeit & Abschlussarbeit\tabularnewline
+\midrule
+\endhead
+Semester & Titel der Arbeit\tabularnewline
+Lehrveranstaltung & Universität\tabularnewline
+Dozent & Fakultät\tabularnewline
+Modul des Leistungsnachweises & Lehrstuhl\tabularnewline
+Verfasser (Name, Matrikelnr.) & Verfasser (Name, Anschrift,
+Matrikelnr.)\tabularnewline
+Titel der Arbeit & Erst- und Zweitgutachter\tabularnewline
+Abgabedatum & Abgabedatum\tabularnewline
 \bottomrule
 \end{longtable}
 
