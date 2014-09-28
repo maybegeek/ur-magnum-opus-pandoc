@@ -1,12 +1,16 @@
-TEXB := $(patsubst %.md,%.md.latex.biblatex.tex,$(wildcard *.ur.md))
-TEXSTUD := $(patsubst %.md,%.md.latex.biblatex.stud.tex,$(wildcard *.ur.md))
-PDF := $(wildcard *.ur.md.latex.biblatex.pdf)
-PDFSTUD := $(wildcard *.ur.md.latex.biblatex.stud.pdf)
+TEX          := $(patsubst %.md,%.md.latex.tex,$(wildcard *.ur.md))
+TEXSTUD      := $(patsubst %.md,%.md.latex.stud.tex,$(wildcard *.ur.md))
+TEXD         := $(patsubst %.md,%.md.latex.draft.tex,$(wildcard *.ur.md))
+TEXSTUDD     := $(patsubst %.md,%.md.latex.stud.draft.tex,$(wildcard *.ur.md))
+PDFSLINUX    := $(wildcard *atex.pdf) $(wildcard *atex.stud.pdf) $(wildcard *atex.draft.pdf) $(wildcard *atex.stud.draft.pdf)
 
-all : $(TEXB) $(TEXSTUD)
+all : $(TEX) $(TEXSTUD) $(TEXD) $(TEXSTUDD)
 
-# TEX biblatex
-%.ur.md.latex.biblatex.tex : %.ur.md
+##
+## TEX
+## MD->LaTeX->BibLaTeX+Biber->PDF
+##
+%.ur.md.latex.tex : %.ur.md
 	@pandoc \
 	--standalone \
 	--latex-engine=xelatex \
@@ -21,13 +25,15 @@ all : $(TEXB) $(TEXSTUD)
 	--biblatex \
 	$< -o $@
 	@echo '* TEX (biblatex)'
-	xelatex $@ && biber $(wildcard *.ur.md).latex.biblatex && xelatex $@ && xelatex $@ echo
-	@-rm *.latex.biblatex.aux *.latex.biblatex.bbl *.latex.biblatex.bcf *.latex.biblatex.blg *.latex.biblatex.lof *.latex.biblatex.log *.latex.biblatex.lot *.latex.biblatex.out *.latex.biblatex.run.xml *.latex.biblatex.toc
+	xelatex $@ && biber $(wildcard *.ur.md).latex && xelatex $@ && xelatex $@ echo
+	@-rm *.aux *.bbl *.bcf *.blg *.lof *.log *.lot *.out *.run.xml *.toc
 
-
-
-# TEX biblatex stud
-%.ur.md.latex.biblatex.stud.tex : %.ur.md
+##
+## TEXSTUD
+## MD->LaTeX->BibLaTeX+Biber->PDF
+## Studentenversion mit mehr Durchschuss
+##
+%.ur.md.latex.stud.tex : %.ur.md
 	@pandoc \
 	--standalone \
 	--latex-engine=xelatex \
@@ -44,13 +50,63 @@ all : $(TEXB) $(TEXSTUD)
 	-V classoption='DIV=11' \
 	$< -o $@
 	@echo '* TEX (biblatex, stud)'
-	xelatex $@ && biber $(wildcard *.ur.md).latex.biblatex.stud && xelatex $@ && xelatex $@ echo
-	@-rm *.latex.biblatex.stud.aux *.latex.biblatex.stud.bbl *.latex.biblatex.stud.bcf *.latex.biblatex.stud.blg *.latex.biblatex.stud.lof *.latex.biblatex.stud.log *.latex.biblatex.stud.lot *.latex.biblatex.stud.out *.latex.biblatex.stud.run.xml *.latex.biblatex.stud.toc
+	xelatex $@ && biber $(wildcard *.ur.md).latex.stud && xelatex $@ && xelatex $@ echo
+	@-rm *.aux *.bbl *.bcf *.blg *.lof *.log *.lot *.out *.run.xml *.toc
 
+##
+## TEXD
+## MD->LaTeX->BibLaTeX+Biber->PDF
+## draft
+##
+%.ur.md.latex.draft.tex : %.ur.md
+	@pandoc \
+	--standalone \
+	--latex-engine=xelatex \
+	--no-tex-ligatures \
+	-Vlot \
+	-Vlof \
+	--number-sections \
+	--biblio Quellen/Quellen.bib \
+	--template=Template/MW-Template.tex \
+	Template/yaml.yaml \
+	--include-in-header=Template/latex-include-kolumnentitel.tex \
+	--include-in-header=Template/latex-include-watermark.tex \
+	--biblatex \
+	$< -o $@
+	@echo '* TEX (biblatex)'
+	xelatex $@ && biber $(wildcard *.ur.md).latex.draft && xelatex $@ && xelatex $@ echo
+	@-rm *.aux *.bbl *.bcf *.blg *.lof *.log *.lot *.out *.run.xml *.toc
+
+##
+## TEXSTUDD
+## MD->LaTeX->BibLaTeX+Biber->PDF
+## Studentenversion mit mehr Durchschuss
+## draft
+##
+%.ur.md.latex.stud.draft.tex : %.ur.md
+	@pandoc \
+	--standalone \
+	--latex-engine=xelatex \
+	--no-tex-ligatures \
+	-Vlot \
+	-Vlof \
+	--number-sections \
+	--biblio Quellen/Quellen.bib \
+	--template=Template/MW-Template.tex \
+	Template/yaml.yaml \
+	--include-in-header=Template/latex-include-kolumnentitel.tex \
+	--include-in-header=Template/latex-include-watermark.tex \
+	--biblatex \
+	-V linestretch='1.7' \
+	-V classoption='DIV=11' \
+	$< -o $@
+	@echo '* TEX (biblatex, stud)'
+	xelatex $@ && biber $(wildcard *.ur.md).latex.stud.draft && xelatex $@ && xelatex $@ echo
+	@-rm *.aux *.bbl *.bcf *.blg *.lof *.log *.lot *.out *.run.xml *.toc
 
 
 clean-all : ;
-	@-rm $(TEXB) $(TEXSTUD) $(PDF) $(PDFSTUD) *.latex.biblatex.aux *.latex.biblatex.bbl *.latex.biblatex.bcf *.latex.biblatex.blg *.latex.biblatex.lof *.latex.biblatex.log *.latex.biblatex.lot *.latex.biblatex.out *.latex.biblatex.run.xml *.latex.biblatex.toc *.latex.biblatex.stud.aux *.latex.biblatex.stud.bbl *.latex.biblatex.stud.bcf *.latex.biblatex.stud.blg *.latex.biblatex.stud.lof *.latex.biblatex.stud.log *.latex.biblatex.stud.lot *.latex.biblatex.stud.out *.latex.biblatex.stud.run.xml *.latex.biblatex.stud.toc
+	@-rm $(TEX) $(TEXSTUD) $(TEXD) $(TEXSTUDD) $(PDFSLINUX) *.aux *.bbl *.bcf *.blg *.lof *.log *.lot *.out *.run.xml *.toc
 	@echo 'Alle unnötigen Output-Dateien gelöscht.'
 
 rebuild-all : clean-all all
