@@ -1,7 +1,6 @@
 ---
 documentclass: scrartcl
 papersize: a4paper
-geometry: a4paper
 classoption:
     - DIV=9
     - headinclude=true

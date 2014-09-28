@@ -50,7 +50,7 @@ all : $(TEXB) $(TEXSTUD)
 
 
 clean-all : ;
-	@-rm $(TEXB) $(PDF) $(PDFSTUD) *.latex.biblatex.aux *.latex.biblatex.bbl *.latex.biblatex.bcf *.latex.biblatex.blg *.latex.biblatex.lof *.latex.biblatex.log *.latex.biblatex.lot *.latex.biblatex.out *.latex.biblatex.run.xml *.latex.biblatex.toc
+	@-rm $(TEXB) $(TEXSTUD) $(PDF) $(PDFSTUD) *.latex.biblatex.aux *.latex.biblatex.bbl *.latex.biblatex.bcf *.latex.biblatex.blg *.latex.biblatex.lof *.latex.biblatex.log *.latex.biblatex.lot *.latex.biblatex.out *.latex.biblatex.run.xml *.latex.biblatex.toc *.latex.biblatex.stud.aux *.latex.biblatex.stud.bbl *.latex.biblatex.stud.bcf *.latex.biblatex.stud.blg *.latex.biblatex.stud.lof *.latex.biblatex.stud.log *.latex.biblatex.stud.lot *.latex.biblatex.stud.out *.latex.biblatex.stud.run.xml *.latex.biblatex.stud.toc
 	@echo 'Alle unnötigen Output-Dateien gelöscht.'
 
 rebuild-all : clean-all all
