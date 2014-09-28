@@ -1,10 +1,12 @@
 TEX          := $(patsubst %.md,%.md.latex.tex,$(wildcard *.ur.md))
 TEXSTUD      := $(patsubst %.md,%.md.latex.stud.tex,$(wildcard *.ur.md))
+TEXPLAIN     := $(patsubst %.md,%.md.latex.plain.tex,$(wildcard *.ur.md))
+TEXSTUDPLAIN := $(patsubst %.md,%.md.latex.stud.plain.tex,$(wildcard *.ur.md))
 TEXD         := $(patsubst %.md,%.md.latex.draft.tex,$(wildcard *.ur.md))
 TEXSTUDD     := $(patsubst %.md,%.md.latex.stud.draft.tex,$(wildcard *.ur.md))
 PDFSLINUX    := $(wildcard *atex.pdf) $(wildcard *atex.stud.pdf) $(wildcard *atex.draft.pdf) $(wildcard *atex.stud.draft.pdf)
 
-all : $(TEX) $(TEXSTUD) $(TEXD) $(TEXSTUDD)
+all : $(TEX) $(TEXSTUD) $(TEXPLAIN) $(TEXSTUDPLAIN) $(TEXD) $(TEXSTUDD)
 
 ##
 ## TEX
@@ -51,6 +53,53 @@ all : $(TEX) $(TEXSTUD) $(TEXD) $(TEXSTUDD)
 	$< -o $@
 	@echo '* TEX (biblatex, stud)'
 	xelatex $@ && biber $(wildcard *.ur.md).latex.stud && xelatex $@ && xelatex $@ echo
+	@-rm *.aux *.bbl *.bcf *.blg *.lof *.log *.lot *.out *.run.xml *.toc
+
+##
+## TEXPLAIN
+## MD->LaTeX->BibLaTeX+Biber->PDF
+## ohne Kolumnentitel
+##
+%.ur.md.latex.plain.tex : %.ur.md
+	@pandoc \
+	--standalone \
+	--latex-engine=xelatex \
+	--no-tex-ligatures \
+	-Vlot \
+	-Vlof \
+	--number-sections \
+	--biblio Quellen/Quellen.bib \
+	--template=Template/MW-Template.tex \
+	Template/yaml.yaml \
+	--biblatex \
+	$< -o $@
+	@echo '* TEX (biblatex)'
+	xelatex $@ && biber $(wildcard *.ur.md).latex.plain && xelatex $@ && xelatex $@ echo
+	@-rm *.aux *.bbl *.bcf *.blg *.lof *.log *.lot *.out *.run.xml *.toc
+
+##
+## TEXSTUDPLAIN
+## MD->LaTeX->BibLaTeX+Biber->PDF
+## Studentenversion mit mehr Durchschuss
+## ohne Kolumnentitel
+##
+%.ur.md.latex.stud.plain.tex : %.ur.md
+	@pandoc \
+	--standalone \
+	--latex-engine=xelatex \
+	--no-tex-ligatures \
+	-Vlot \
+	-Vlof \
+	--number-sections \
+	--biblio Quellen/Quellen.bib \
+	--template=Template/MW-Template.tex \
+	Template/yaml.yaml \
+	--biblatex \
+	-V linestretch='1.7' \
+	-V classoption='DIV=11' \
+	$< -o $@
+	@echo '* TEX (biblatex, stud)'
+	xelatex $@ && biber $(wildcard *.ur.md).latex.stud.plain && xelatex $@ && xelatex $@ echo
 	@-rm *.aux *.bbl *.bcf *.blg *.lof *.log *.lot *.out *.run.xml *.toc
 
 ##
@@ -106,7 +155,7 @@ all : $(TEX) $(TEXSTUD) $(TEXD) $(TEXSTUDD)
 
 
 clean-all : ;
-	@-rm $(TEX) $(TEXSTUD) $(TEXD) $(TEXSTUDD) $(PDFSLINUX) *.aux *.bbl *.bcf *.blg *.lof *.log *.lot *.out *.run.xml *.toc
+	@-rm $(TEX) $(TEXSTUD) $(TEXSTUDPLAIN) $(TEXPLAIN) $(TEXD) $(TEXSTUDD) $(PDFSLINUX) *.aux *.bbl *.bcf *.blg *.lof *.log *.lot *.out *.run.xml *.toc
 	@echo 'Alle unnötigen Output-Dateien gelöscht.'
 
 rebuild-all : clean-all all
