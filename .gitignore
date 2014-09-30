@@ -1,0 +1,17 @@
+## Core latex/pdflatex auxiliary files:
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+
+## ignore the top tex output files in root
+/Inhalt.ur.md.latex.stud.plain.tex
+/Inhalt.ur.md.latex.stud.tex
+/Inhalt.ur.md.latex.tex
+/Inhalt.ur.md.latex.draft.tex
+/Inhalt.ur.md.latex.win.tex
+/Inhalt.ur.md.latex.plain.tex
+/Inhalt.ur.md.latex.stud.draft.tex
