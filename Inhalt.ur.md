@@ -26,6 +26,8 @@ ur-fachsemester: '3'
 ur-kombi: 'Medienwissenschaft (Informationswissenschaft/Medieninformatik)'
 ur-modul: 'M-05'
 
+## alle Qullen anzeigen
+nocite: TRUE
 ...
 
 
