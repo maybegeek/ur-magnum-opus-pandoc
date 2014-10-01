@@ -6,24 +6,30 @@ TEXD         := $(patsubst %.md,%.md.latex.draft.tex,$(wildcard *.ur.md))
 TEXSTUDD     := $(patsubst %.md,%.md.latex.stud.draft.tex,$(wildcard *.ur.md))
 PDFSLINUX    := $(wildcard *atex.pdf) $(wildcard *atex.stud.pdf) $(wildcard *atex.draft.pdf) $(wildcard *atex.stud.draft.pdf)
 
-all : $(TEX) $(TEXSTUD) $(TEXPLAIN) $(TEXSTUDPLAIN) $(TEXD) $(TEXSTUDD)
-
-##
-## TEX
-## MD->LaTeX->BibLaTeX+Biber->PDF
-##
-%.ur.md.latex.tex : %.ur.md
-	@pandoc \
-	--standalone \
+define TEX_TMPL
+ --standalone \
 	--latex-engine=xelatex \
 	--no-tex-ligatures \
 	-Vlot \
 	-Vlof \
 	--number-sections \
 	--biblio Quellen/Quellen.bib \
-	--template=Template/MW-Template.tex \
+	--template=Template/ur-magnum-opus-pandoc.tex \
 	Template/yaml.yaml \
-	--include-in-header=Template/latex-include-kolumnentitel.tex \
+	--include-in-header=Template/latex-include-kolumnentitel.tex
+endef
+
+export TEX_TMPL
+
+#all : $(TEX) $(TEXSTUD) $(TEXPLAIN) $(TEXSTUDPLAIN) $(TEXD) $(TEXSTUDD)
+all : $(TEX)
+
+##
+## TEX
+## MD->LaTeX->BibLaTeX+Biber->PDF
+##
+%.ur.md.latex.tex : %.ur.md
+	@pandoc $$TEX_TMPL \
 	--biblatex \
 	$< -o $@
 	@echo '* TEX (biblatex)'
@@ -44,7 +50,7 @@ all : $(TEX) $(TEXSTUD) $(TEXPLAIN) $(TEXSTUDPLAIN) $(TEXD) $(TEXSTUDD)
 	-Vlof \
 	--number-sections \
 	--biblio Quellen/Quellen.bib \
-	--template=Template/MW-Template.tex \
+	--template=Template/ur-magnum-opus-pandoc.tex \
 	Template/yaml.yaml \
 	--include-in-header=Template/latex-include-kolumnentitel.tex \
 	--biblatex \
@@ -69,7 +75,7 @@ all : $(TEX) $(TEXSTUD) $(TEXPLAIN) $(TEXSTUDPLAIN) $(TEXD) $(TEXSTUDD)
 	-Vlof \
 	--number-sections \
 	--biblio Quellen/Quellen.bib \
-	--template=Template/MW-Template.tex \
+	--template=Template/ur-magnum-opus-pandoc.tex \
 	Template/yaml.yaml \
 	--biblatex \
 	$< -o $@
@@ -92,7 +98,7 @@ all : $(TEX) $(TEXSTUD) $(TEXPLAIN) $(TEXSTUDPLAIN) $(TEXD) $(TEXSTUDD)
 	-Vlof \
 	--number-sections \
 	--biblio Quellen/Quellen.bib \
-	--template=Template/MW-Template.tex \
+	--template=Template/ur-magnum-opus-pandoc.tex \
 	Template/yaml.yaml \
 	--biblatex \
 	-V linestretch='1.7' \
@@ -116,7 +122,7 @@ all : $(TEX) $(TEXSTUD) $(TEXPLAIN) $(TEXSTUDPLAIN) $(TEXD) $(TEXSTUDD)
 	-Vlof \
 	--number-sections \
 	--biblio Quellen/Quellen.bib \
-	--template=Template/MW-Template.tex \
+	--template=Template/ur-magnum-opus-pandoc.tex \
 	Template/yaml.yaml \
 	--include-in-header=Template/latex-include-kolumnentitel.tex \
 	--include-in-header=Template/latex-include-watermark.tex \
@@ -141,7 +147,7 @@ all : $(TEX) $(TEXSTUD) $(TEXPLAIN) $(TEXSTUDPLAIN) $(TEXD) $(TEXSTUDD)
 	-Vlof \
 	--number-sections \
 	--biblio Quellen/Quellen.bib \
-	--template=Template/MW-Template.tex \
+	--template=Template/ur-magnum-opus-pandoc.tex \
 	Template/yaml.yaml \
 	--include-in-header=Template/latex-include-kolumnentitel.tex \
 	--include-in-header=Template/latex-include-watermark.tex \
