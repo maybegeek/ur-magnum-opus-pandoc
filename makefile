@@ -15,7 +15,8 @@ define TEX_TMPL
 	--number-sections \
 	--biblio Quellen/Quellen.bib \
 	--template=Template/ur-magnum-opus-pandoc.tex \
-	Template/yaml.yaml \
+	Template/metadata.yaml \
+	--biblatex \
 	--include-in-header=Template/latex-include-kolumnentitel.tex
 endef
 
