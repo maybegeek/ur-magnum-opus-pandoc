@@ -73,12 +73,12 @@ verzeichnen wir in unserer Quellenverwaltung derart:
 
 ``` {.bibtex}
 @Electronic{wiki:mewi,
-   Author = {Wikipedia},
-   Title = {Medienwissenschaft -- Wikipedia{,} Die freie Enzyklopädie},
-   Year = {2014},
-   Date = {2014-01-30},
-   Url = {http://de.wikipedia.org/w/index.php?title=Medienwissenschaft&oldid=130311321},
-   Urldate = {2014-09-30},
+  Author = {Wikipedia},
+  Title = {Medienwissenschaft -- Wikipedia{,} Die freie Enzyklopädie},
+  Year = {2014},
+  Date = {2014-01-30},
+  Url = {http://de.wikipedia.org/w/index.php?title=Medienwissenschaft&oldid=130311321},
+  Urldate = {2014-09-30},
 }
 ```
 
@@ -86,13 +86,13 @@ Filmmaterial erfassen wir im folgenden Schema:
 
 ``` {.bibtex}
 @Movie{mein:kuerzel,
-    Address = {Produktionsland},
-    Author = {Regisseur},
-    Pagetotal = {Laufzeit-in-Minuten},
-    Shorttitle = {Kurztitel},
-    Title = {Originaltitel (dt. Titel)},
-    Howpublished = {Vertrieb [Medium/Mediumsjahr]},
-    Year = {Produktionsjahr},
+  Address = {Produktionsland},
+  Author = {Regisseur},
+  Pagetotal = {Laufzeit-in-Minuten},
+  Shorttitle = {Kurztitel},
+  Title = {Originaltitel (dt. Titel)},
+  Howpublished = {Vertrieb [Medium/Mediumsjahr]},
+  Year = {Produktionsjahr},
   Type = {movie},
   Keywords = {film},
 }
@@ -126,13 +126,13 @@ zur abweichenden Titel-Jahr-Zitation für Filme.
 
 ``` {.bibtex}
 @Movie{kubrick:1968,
-    Address = {UK/USA},
-    Author = {Kubrick, Stanley},
-    Pagetotal = {141},
-    Shorttitle = {2001: A Space Odyssey},
-    Title = {2001: A Space Odyssey (2001: Odyssee im Weltraum)},
-    Howpublished = {Warner Home Video [DVD/2007]},
-    Year = {1968},
+  Address = {UK/USA},
+  Author = {Kubrick, Stanley},
+  Pagetotal = {141},
+  Shorttitle = {2001: A Space Odyssey},
+  Title = {2001: A Space Odyssey (2001: Odyssee im Weltraum)},
+  Howpublished = {Warner Home Video [DVD/2007]},
+  Year = {1968},
   Type = {movie},
   Keywords = {film},
 }
