@@ -29,8 +29,7 @@ endef
 export TEX_TMPL
 export TEX_RM
 
-#all : $(TEX) $(TEXSTUD) $(TEXPLAIN) $(TEXSTUDPLAIN) $(TEXD) $(TEXSTUDD)
-all : $(TEX) $(ODT) $(HTM)
+all : $(TEX) $(TEXSTUD) $(TEXPLAIN) $(TEXSTUDPLAIN) $(TEXD) $(TEXSTUDD) $(ODT) $(HTM)
 
 # TEX (MD->LaTeX->BibLaTeX+Biber->PDF)
 %.ur.md.latex.tex : %.ur.md
