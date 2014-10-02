@@ -1,0 +1,39 @@
+* {
+  font-family: 'EB Garamond', serif;
+}
+
+body {
+  font-size:128%;
+}
+
+figcaption {
+  text-align:center;
+}
+
+table {
+  margin-left:auto;
+  margin-right:auto;
+}
+
+table > caption {
+  caption-side: bottom;
+  margin-top:1em;
+  margin-bottom:1.5em;
+}
+
+table > thead {
+  border-bottom: 2px solid black;
+}
+
+table tr {
+  border-bottom: 1px solid black;
+}
+
+table tr td {
+  padding: 0.1em 0.4em 0.1em 0.4em;
+}
+
+code {
+  font-family: 'Droid Sans Mono' ;
+  font-size: 80%;
+}

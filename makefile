@@ -4,7 +4,15 @@ TEXPLAIN     := $(patsubst %.md,%.md.latex.plain.tex,$(wildcard *.ur.md))
 TEXSTUDPLAIN := $(patsubst %.md,%.md.latex.stud.plain.tex,$(wildcard *.ur.md))
 TEXD         := $(patsubst %.md,%.md.latex.draft.tex,$(wildcard *.ur.md))
 TEXSTUDD     := $(patsubst %.md,%.md.latex.stud.draft.tex,$(wildcard *.ur.md))
+CSL          := https://raw.githack.com/maybegeek/ur-magnum-opus-csl/master/ur-magnum-opus-zotero.csl
+ODT          := $(patsubst %.md,%.md.odt,$(wildcard *.ur.md))
+HTM          := $(patsubst %.md,%.md.htm,$(wildcard *.ur.md))
 PDFSLINUX    := $(wildcard *atex.pdf) $(wildcard *atex.stud.pdf) $(wildcard *atex.draft.pdf) $(wildcard *atex.stud.draft.pdf)
+URGRID       := Template/HTML/gridic.css
+URHTMCSS     := Template/HTML/html.css
+URHTMINCB    := Template/HTML/gridic-before.txt
+URHTMINCA    := Template/HTML/gridic-after.txt
+URWEBFONT    := Template/HTML/webfont-eb-garamond-link.txt
 O_DIR        := Output
 TEX_O        := --output-directory=$(O_DIR)
 
@@ -21,8 +29,8 @@ endef
 export TEX_TMPL
 export TEX_RM
 
-all : $(TEX) $(TEXSTUD) $(TEXPLAIN) $(TEXSTUDPLAIN) $(TEXD) $(TEXSTUDD)
-#all : $(TEX)
+#all : $(TEX) $(TEXSTUD) $(TEXPLAIN) $(TEXSTUDPLAIN) $(TEXD) $(TEXSTUDD)
+all : $(TEX) $(ODT) $(HTM)
 
 # TEX (MD->LaTeX->BibLaTeX+Biber->PDF)
 %.ur.md.latex.tex : %.ur.md
@@ -94,8 +102,25 @@ all : $(TEX) $(TEXSTUD) $(TEXPLAIN) $(TEXSTUDPLAIN) $(TEXD) $(TEXSTUDD)
 	@-rm $$TEX_RM
 
 
+# ODT
+%.ur.md.odt : %.ur.md
+	@pandoc --smart --standalone --biblio Quellen/Quellen.bib --csl $(CSL) \
+	$< -o $(O_DIR)/$@
+	@echo '* ODT'
+
+
+# HTML (for offline use)
+%.ur.md.htm : %.ur.md
+	@pandoc --smart --standalone --toc --number-sections -t html5 \
+	--biblio Quellen/Quellen.bib --csl $(CSL) -c $(URGRID) -c $(URHTMCSS) \
+	-H $(URWEBFONT) -B $(URHTMINCB) -A $(URHTMINCA) \
+	-V lang='de' --self-contained \
+	$< -o $(O_DIR)/$@
+	@echo '* HTML (offline)'
+
+
 clean-all : ;
-	@-rm $(TEX) $(TEXSTUD) $(TEXSTUDPLAIN) $(TEXPLAIN) $(TEXD) $(TEXSTUDD) $(PDFSLINUX) $$TEX_RM
+	@-rm $(TEX) $(TEXSTUD) $(TEXSTUDPLAIN) $(TEXPLAIN) $(TEXD) $(TEXSTUDD) $(PDFSLINUX) $(ODT) $$TEX_RM
 	@echo 'Alle unnötigen Output-Dateien gelöscht.'
 
 rebuild-all : clean-all all
