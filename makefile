@@ -5,6 +5,8 @@ TEXSTUDPLAIN := $(patsubst %.md,%.md.latex.stud.plain.tex,$(wildcard *.ur.md))
 TEXD         := $(patsubst %.md,%.md.latex.draft.tex,$(wildcard *.ur.md))
 TEXSTUDD     := $(patsubst %.md,%.md.latex.stud.draft.tex,$(wildcard *.ur.md))
 PDFSLINUX    := $(wildcard *atex.pdf) $(wildcard *atex.stud.pdf) $(wildcard *atex.draft.pdf) $(wildcard *atex.stud.draft.pdf)
+O_DIR        := Output
+TEX_O        := --output-directory=$(O_DIR)
 
 define TEX_TMPL
  --standalone --latex-engine=xelatex \
@@ -13,23 +15,22 @@ define TEX_TMPL
 	--template=Template/ur-magnum-opus-pandoc.tex \
 	Template/metadata.yaml --biblatex 
 endef
-
 define TEX_RM
-*.aux *.bbl *.bcf *.blg *.lof *.log *.lot *.out *.run.xml *.toc
+Output/*.aux Output/*.bbl Output/*.bcf Output/*.blg Output/*.lof Output/*.log Output/*.lot Output/*.out Output/*.run.xml Output/*.toc
 endef
-
 export TEX_TMPL
 export TEX_RM
 
 all : $(TEX) $(TEXSTUD) $(TEXPLAIN) $(TEXSTUDPLAIN) $(TEXD) $(TEXSTUDD)
+#all : $(TEX)
 
 # TEX (MD->LaTeX->BibLaTeX+Biber->PDF)
 %.ur.md.latex.tex : %.ur.md
 	@pandoc $$TEX_TMPL \
 	--include-in-header=Template/latex-include-kolumnentitel.tex \
-	$< -o $@
+	$< -o $(O_DIR)/$@
 	@echo '* TEX (biblatex)'
-	xelatex $@ && biber $(wildcard *.ur.md).latex && xelatex $@ && xelatex $@ echo
+	xelatex $(TEX_O) $@ && biber $(O_DIR)/$(wildcard *.ur.md).latex && xelatex $(TEX_O) $@ && xelatex $(TEX_O) $@
 	@-rm $$TEX_RM
 
 
@@ -39,9 +40,9 @@ all : $(TEX) $(TEXSTUD) $(TEXPLAIN) $(TEXSTUDPLAIN) $(TEXD) $(TEXSTUDD)
 	@pandoc $$TEX_TMPL \
 	--include-in-header=Template/latex-include-kolumnentitel.tex \
 	-V linestretch='1.7' -V classoption='DIV=11' \
-	$< -o $@
+	$< -o $(O_DIR)/$@
 	@echo '* TEX (biblatex, stud)'
-	xelatex $@ && biber $(wildcard *.ur.md).latex.stud && xelatex $@ && xelatex $@ echo
+	xelatex $(TEX_O) $@ && biber $(O_DIR)/$(wildcard *.ur.md).latex.stud && xelatex $(TEX_O) $@ && xelatex $(TEX_O) $@
 	@-rm $$TEX_RM
 
 
@@ -49,9 +50,9 @@ all : $(TEX) $(TEXSTUD) $(TEXPLAIN) $(TEXSTUDPLAIN) $(TEXD) $(TEXSTUDD)
 # ohne Kolumnentitel
 %.ur.md.latex.plain.tex : %.ur.md
 	@pandoc $$TEX_TMPL \
-	$< -o $@
+	$< -o $(O_DIR)/$@
 	@echo '* TEX (biblatex)'
-	xelatex $@ && biber $(wildcard *.ur.md).latex.plain && xelatex $@ && xelatex $@ echo
+	xelatex $(TEX_O) $@ && biber $(O_DIR)/$(wildcard *.ur.md).latex.plain && xelatex $(TEX_O) $@ && xelatex $(TEX_O) $@
 	@-rm $$TEX_RM
 
 
@@ -61,9 +62,9 @@ all : $(TEX) $(TEXSTUD) $(TEXPLAIN) $(TEXSTUDPLAIN) $(TEXD) $(TEXSTUDD)
 %.ur.md.latex.stud.plain.tex : %.ur.md
 	@pandoc $$TEX_TMPL \
 	-V linestretch='1.7' -V classoption='DIV=11' \
-	$< -o $@
+	$< -o $(O_DIR)/$@
 	@echo '* TEX (biblatex, stud)'
-	xelatex $@ && biber $(wildcard *.ur.md).latex.stud.plain && xelatex $@ && xelatex $@ echo
+	xelatex $(TEX_O) $@ && biber $(O_DIR)/$(wildcard *.ur.md).latex.stud.plain && xelatex $(TEX_O) $@ && xelatex $(TEX_O) $@
 	@-rm $$TEX_RM
 
 
@@ -73,9 +74,9 @@ all : $(TEX) $(TEXSTUD) $(TEXPLAIN) $(TEXSTUDPLAIN) $(TEXD) $(TEXSTUDD)
 	@pandoc $$TEX_TMPL \
 	--include-in-header=Template/latex-include-kolumnentitel.tex \
 	--include-in-header=Template/latex-include-watermark.tex \
-	$< -o $@
+	$< -o $(O_DIR)/$@
 	@echo '* TEX (biblatex)'
-	xelatex $@ && biber $(wildcard *.ur.md).latex.draft && xelatex $@ && xelatex $@ echo
+	xelatex $(TEX_O) $@ && biber $(O_DIR)/$(wildcard *.ur.md).latex.draft && xelatex $(TEX_O) $@ && xelatex $(TEX_O) $@
 	@-rm $$TEX_RM
 
 
@@ -87,9 +88,9 @@ all : $(TEX) $(TEXSTUD) $(TEXPLAIN) $(TEXSTUDPLAIN) $(TEXD) $(TEXSTUDD)
 	--include-in-header=Template/latex-include-kolumnentitel.tex \
 	--include-in-header=Template/latex-include-watermark.tex \
 	-V linestretch='1.7' -V classoption='DIV=11' \
-	$< -o $@
+	$< -o $(O_DIR)/$@
 	@echo '* TEX (biblatex, stud)'
-	xelatex $@ && biber $(wildcard *.ur.md).latex.stud.draft && xelatex $@ && xelatex $@ echo
+	xelatex $(TEX_O) $@ && biber $(O_DIR)/$(wildcard *.ur.md).latex.stud.draft && xelatex $(TEX_O) $@ && xelatex $(TEX_O) $@
 	@-rm $$TEX_RM
 
 
