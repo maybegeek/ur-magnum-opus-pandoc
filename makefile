@@ -4,7 +4,8 @@ TEXPLAIN     := $(patsubst %.md,%.md.latex.plain.tex,$(wildcard *.ur.md))
 TEXSTUDPLAIN := $(patsubst %.md,%.md.latex.stud.plain.tex,$(wildcard *.ur.md))
 TEXD         := $(patsubst %.md,%.md.latex.draft.tex,$(wildcard *.ur.md))
 TEXSTUDD     := $(patsubst %.md,%.md.latex.stud.draft.tex,$(wildcard *.ur.md))
-CSL          := https://raw.githack.com/maybegeek/ur-magnum-opus-csl/master/ur-magnum-opus-zotero.csl
+#CSL          := https://raw.githack.com/maybegeek/ur-magnum-opus-csl/master/ur-magnum-opus-zotero.csl
+CSL          := Template/CSL/ur-magnum-opus-zotero.csl
 ODT          := $(patsubst %.md,%.md.odt,$(wildcard *.ur.md))
 HTM          := $(patsubst %.md,%.md.htm,$(wildcard *.ur.md))
 PDFSLINUX    := $(wildcard *atex.pdf) $(wildcard *atex.stud.pdf) $(wildcard *atex.draft.pdf) $(wildcard *atex.stud.draft.pdf)
@@ -30,6 +31,8 @@ export TEX_TMPL
 export TEX_RM
 
 all : $(TEX) $(TEXSTUD) $(TEXPLAIN) $(TEXSTUDPLAIN) $(TEXD) $(TEXSTUDD) $(ODT) $(HTM)
+
+html : $(HTM)
 
 # TEX (MD->LaTeX->BibLaTeX+Biber->PDF)
 %.ur.md.latex.tex : %.ur.md
@@ -115,11 +118,16 @@ all : $(TEX) $(TEXSTUD) $(TEXPLAIN) $(TEXSTUDPLAIN) $(TEXD) $(TEXSTUDD) $(ODT) $
 	-H $(URWEBFONT) -B $(URHTMINCB) -A $(URHTMINCA) \
 	-V lang='de' --self-contained \
 	$< -o $(O_DIR)/$@
-	@echo '* HTML (offline)'
+	@echo '* HTML (offline) erstellt'
 
 
 clean-all : ;
 	@-rm $(TEX) $(TEXSTUD) $(TEXSTUDPLAIN) $(TEXPLAIN) $(TEXD) $(TEXSTUDD) $(PDFSLINUX) $(ODT) $$TEX_RM
 	@echo 'Alle unnötigen Output-Dateien gelöscht.'
 
+clean-html : ;
+	@-rm $(O_DIR)/$(HTM)
+	@echo '* HTML (offline) gelöscht'
+
 rebuild-all : clean-all all
+rebuild-html : clean-html html

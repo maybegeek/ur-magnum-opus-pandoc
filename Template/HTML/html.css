@@ -6,6 +6,16 @@ body {
   font-size:128%;
 }
 
+nav#TOC ul,
+nav#TOC ul ul,
+nav#TOC ul ul ul {
+  list-style-type:none;
+}
+
+figure embed {
+  width: 100%;
+}
+
 figcaption {
   text-align:center;
 }
