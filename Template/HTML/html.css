@@ -29,7 +29,8 @@ table tr {
   border-bottom: 1px solid black;
 }
 
-table tr td {
+table tr td,
+thead tr th {
   padding: 0.1em 0.4em 0.1em 0.4em;
 }
 
