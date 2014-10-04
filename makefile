@@ -32,7 +32,9 @@ export TEX_RM
 
 all : $(TEX) $(TEXSTUD) $(TEXPLAIN) $(TEXSTUDPLAIN) $(TEXD) $(TEXSTUDD) $(ODT) $(HTM)
 
+odt: $(ODT)
 html : $(HTM)
+
 
 # TEX (MD->LaTeX->BibLaTeX+Biber->PDF)
 %.ur.md.latex.tex : %.ur.md
@@ -108,7 +110,7 @@ html : $(HTM)
 %.ur.md.odt : %.ur.md
 	@pandoc --smart --standalone --biblio Quellen/Quellen.bib --csl $(CSL) \
 	$< -o $(O_DIR)/$@
-	@echo '* ODT'
+	@echo '* neue ODT erstellt'
 
 
 # HTML (for offline use)
@@ -118,16 +120,21 @@ html : $(HTM)
 	-H $(URWEBFONT) -B $(URHTMINCB) -A $(URHTMINCA) \
 	-V lang='de' --self-contained \
 	$< -o $(O_DIR)/$@
-	@echo '* HTML (offline) erstellt'
+	@echo '* neue HTML (offline) erstellt'
 
 
-clean-all : ;
+rm-all : ;
 	@-rm $(TEX) $(TEXSTUD) $(TEXSTUDPLAIN) $(TEXPLAIN) $(TEXD) $(TEXSTUDD) $(PDFSLINUX) $(ODT) $$TEX_RM
 	@echo 'Alle unnötigen Output-Dateien gelöscht.'
 
-clean-html : ;
-	@-rm $(O_DIR)/$(HTM)
-	@echo '* HTML (offline) gelöscht'
+rm-odt : ;
+	@-rm $(O_DIR)/$(ODT)
+	@echo '* alte ODT gelöscht'
 
-rebuild-all : clean-all all
-rebuild-html : clean-html html
+rm-html : ;
+	@-rm $(O_DIR)/$(HTM)
+	@echo '* alte HTML (offline) gelöscht'
+
+rebuild-all : rm-all all
+rebuild-odt : rm-odt odt
+rebuild-html : rm-html html
