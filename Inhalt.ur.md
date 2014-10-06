@@ -19,7 +19,7 @@ ur-zweitgut: 'Prof. Dr. Rainer Hammwöhner'
 
 ## Hausarbeit
 ur-hausarbeit: TRUE
-ur-veranstaltung: 'Hausarbeit im Kurs: "Digitale Welten"'
+ur-veranstaltung: 'Hausarbeit im Kurs: Digitale Welten'
 ur-dozent: 'Prof. Dr. Hans Wichtig'
 ur-semester: 'Sommersemester 2014'
 ur-fachsemester: '3'
