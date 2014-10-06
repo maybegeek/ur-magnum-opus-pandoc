@@ -35,7 +35,9 @@ nocite: TRUE
 
 Er hörte leise Schritte hinter sich. Das bedeutete nichts Gutes. Wer würde ihm schon folgen, spät in der Nacht und dazu noch in dieser engen Gasse mitten im übel beleumundeten Hafenviertel? Gerade jetzt, wo er das Ding seines Lebens gedreht hatte und mit der Beute verschwinden wollte!
 
-alles in runden Klammern
+## alles in runden Klammern
+
+Die folgenden Beispiele zeigen die Zitation im Text, wobei hier Autorname und Jahreszahl im Klammerausdruck stehen: **(Autor Jahr)**.
 
 * [@dotzler:2008] \
   ``[@dotzler:2008]``
