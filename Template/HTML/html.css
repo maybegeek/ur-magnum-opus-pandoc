@@ -1,22 +1,46 @@
 * {
   font-family: 'EB Garamond', serif;
+  font-variant-ligatures: common-ligatures;
+  font-variant-ligatures: discretionary-ligatures;
+  font-variant-ligatures: historical-ligatures;
+  font-variant-ligatures: contextual;
 }
 
 body {
   font-size:128%;
 }
 
+h1.title {
+  font-size:2.3em;
+  line-height:115%;
+  text-align:center;
+}
+
 h1.subtitle {
   font-size:1.5em;
   line-height:110%;
+  text-align:center;
 }
 
 h2.author {
+  padding-top:1.5em;
   font-size:1em;
+  text-align:center;
+}
+
+div.top-center p {
+  text-align:center;
+  margin-bottom:0;
+  line-height:110%;
+}
+
+.blur {
+  color: transparent;
+  text-shadow: 0 0 5px rgba(0,0,0,0.5);
 }
 
 nav#TOC > ul {
-  padding:1em 0;
+  padding:1.8em 0;
 }
 
 nav#TOC ul,
@@ -28,6 +52,7 @@ nav#TOC ul ul ul {
 nav#TOC a {
   color:black;
   text-decoration:none;
+  font-size:1.2em;
 }
 
 nav#TOC a:hover {
