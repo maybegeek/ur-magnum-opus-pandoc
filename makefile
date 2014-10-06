@@ -1,6 +1,6 @@
 # # # # # # # # # # # # #
-# ur-magnus-opus-pandoc
-# makefile for Linux
+# ur-magnus-opus-pandoc #
+# makefile for Linux    #
 # # # # # # # # # # # # #
 TEX          := $(patsubst %.md,%.md.latex.tex,$(wildcard *.ur.md))
 TEXSTUD      := $(patsubst %.md,%.md.latex.stud.tex,$(wildcard *.ur.md))
@@ -11,6 +11,7 @@ TEXSTUDD     := $(patsubst %.md,%.md.latex.stud.draft.tex,$(wildcard *.ur.md))
 CSL          := https://raw.githack.com/maybegeek/ur-magnum-opus-csl/master/ur-magnum-opus-zotero.csl
 #CSL          := Template/CSL/ur-magnum-opus-zotero.csl
 ODT          := $(patsubst %.md,%.md.odt,$(wildcard *.ur.md))
+ODTUR        := $(patsubst %.md,%.md.uni.odt,$(wildcard *.ur.md))
 HTM          := $(patsubst %.md,%.md.htm,$(wildcard *.ur.md))
 HTMUR        := $(patsubst %.md,%.md.uni.htm,$(wildcard *.ur.md))
 PDFSLINUX    := $(wildcard *atex.pdf) $(wildcard *atex.stud.pdf) $(wildcard *atex.draft.pdf) $(wildcard *atex.stud.draft.pdf)
@@ -20,6 +21,8 @@ URHTMINCB    := Template/HTML/gridic-before.txt
 URHTMINCBB   := Template/HTML/svg-top-banner.txt
 URHTMINCA    := Template/HTML/gridic-after.txt
 URWEBFONT    := Template/HTML/webfont-eb-garamond-link.txt
+ODTTMPL      := Template/ODT/odt-template.txt
+ODTREF       := Template/ODT/reference.odt
 OUT          := Output
 TEX_O        := --output-directory=$(OUT)
 
@@ -36,9 +39,9 @@ endef
 export TEX_TMPL
 export TEX_RM
 
-all : $(TEX) $(TEXSTUD) $(TEXPLAIN) $(TEXSTUDPLAIN) $(TEXD) $(TEXSTUDD) $(ODT) $(HTM) $(HTMUR)
+all : $(TEX) $(TEXSTUD) $(TEXPLAIN) $(TEXSTUDPLAIN) $(TEXD) $(TEXSTUDD) $(ODT) $(ODTUR) $(HTM) $(HTMUR)
 
-odt: $(ODT)
+odt: $(ODT) $(ODTUR)
 html : $(HTM) $(HTMUR)
 
 
@@ -114,9 +117,19 @@ html : $(HTM) $(HTMUR)
 
 # ODT
 %.ur.md.odt : %.ur.md
-	@pandoc --smart --standalone --biblio Quellen/Quellen.bib --csl $(CSL) \
+	@pandoc --smart --standalone --toc --biblio Quellen/Quellen.bib --csl $(CSL) \
+	--reference-odt=$(ODTREF) \
 	$< -o $(OUT)/$@
 	@echo '* neue ODT erstellt'
+
+
+# ODT UNI
+%.ur.md.uni.odt : %.ur.md
+	@pandoc --smart --standalone --toc --biblio Quellen/Quellen.bib --csl $(CSL) \
+	--template=$(ODTTMPL) \
+	--reference-odt=$(ODTREF) \
+	$< -o $(OUT)/$@
+	@echo '* neue ODT (uni) erstellt'
 
 
 # HTML (for offline use)
@@ -136,18 +149,18 @@ html : $(HTM) $(HTMUR)
 	--biblio Quellen/Quellen.bib --csl $(CSL) -c $(URGRID) -c $(URHTMCSS) \
 	-H $(URWEBFONT) -B $(URHTMINCBB) -B $(URHTMINCB) -A $(URHTMINCA) \
 	-V lang='de' --self-contained \
-	--template=Template/HTML/ur-html5-template.htm \
+	--template=Template/HTML/html-template.htm \
 	$< -o $(OUT)/$@
 	@echo '* neue HTML-Datei (uni) erstellt'
 
 
 rm-all : ;
-	@-rm $(TEX) $(TEXSTUD) $(TEXSTUDPLAIN) $(TEXPLAIN) $(TEXD) $(TEXSTUDD) $(PDFSLINUX) $(ODT) $$TEX_RM
+	@-rm $(TEX) $(TEXSTUD) $(TEXSTUDPLAIN) $(TEXPLAIN) $(TEXD) $(TEXSTUDD) $(PDFSLINUX) $(ODT) $(ODTUR) $$TEX_RM
 	@echo 'Alle unnötigen Output-Dateien gelöscht.'
 
 rm-odt : ;
-	@-rm $(OUT)/$(ODT)
-	@echo '* alte ODT-Datei gelöscht'
+	@-rm $(OUT)/$(ODT) $(OUT)/$(ODTUR)
+	@echo '* alte ODT-Dateien gelöscht'
 
 rm-html : ;
 	@-rm $(OUT)/$(HTM) $(OUT)/$(HTMUR)
