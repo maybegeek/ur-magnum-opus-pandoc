@@ -15,7 +15,7 @@ REM TEX
 for /r . %%i in (*.ur.md) do pandoc^
  --standalone --latex-engine=xelatex^
  --no-tex-ligatures -Vlot -Vlof^
- --number-sections --biblio Quellen/Quellen.bib^
+ --number-sections --bibliography Quellen/Quellen.bib^
  --template=Template/ur-magnum-opus-pandoc.tex^
  Template/metadata.yaml --biblatex^
  --include-in-header=Template/latex-include-kolumnentitel.tex^
@@ -31,7 +31,7 @@ REM Studentenversion mit mehr Durchschuss
 for /r . %%i in (*.ur.md) do pandoc^
  --standalone --latex-engine=xelatex^
  --no-tex-ligatures -Vlot -Vlof^
- --number-sections --biblio Quellen/Quellen.bib^
+ --number-sections --bibliography Quellen/Quellen.bib^
  --template=Template/ur-magnum-opus-pandoc.tex^
  Template/metadata.yaml --biblatex^
  --include-in-header=Template/latex-include-kolumnentitel.tex^
@@ -49,7 +49,7 @@ REM ohne Kolumnentitel
 for /r . %%i in (*.ur.md) do pandoc^
  --standalone --latex-engine=xelatex^
  --no-tex-ligatures -Vlot -Vlof^
- --number-sections --biblio Quellen/Quellen.bib^
+ --number-sections --bibliography Quellen/Quellen.bib^
  --template=Template/ur-magnum-opus-pandoc.tex^
  Template/metadata.yaml --biblatex^
  -o %ODIR%/%%~nxi.%FNAME%.plain.tex %%~fi^
@@ -65,7 +65,7 @@ REM ohne Kolumnentitel
 for /r . %%i in (*.ur.md) do pandoc^
  --standalone --latex-engine=xelatex^
  --no-tex-ligatures -Vlot -Vlof^
- --number-sections --biblio Quellen/Quellen.bib^
+ --number-sections --bibliography Quellen/Quellen.bib^
  --template=Template/ur-magnum-opus-pandoc.tex^
  Template/metadata.yaml --biblatex^
  -V linestretch=1.7^
@@ -82,7 +82,7 @@ REM draft
 for /r . %%i in (*.ur.md) do pandoc^
  --standalone --latex-engine=xelatex^
  --no-tex-ligatures -Vlot -Vlof^
- --number-sections --biblio Quellen/Quellen.bib^
+ --number-sections --bibliography Quellen/Quellen.bib^
  --template=Template/ur-magnum-opus-pandoc.tex^
  Template/metadata.yaml --biblatex^
  --include-in-header=Template/latex-include-kolumnentitel.tex^
@@ -100,7 +100,7 @@ REM draft
 for /r . %%i in (*.ur.md) do pandoc^
  --standalone --latex-engine=xelatex^
  --no-tex-ligatures -Vlot -Vlof^
- --number-sections --biblio Quellen/Quellen.bib^
+ --number-sections --bibliography Quellen/Quellen.bib^
  --template=Template/ur-magnum-opus-pandoc.tex^
  Template/metadata.yaml --biblatex^
  --include-in-header=Template/latex-include-kolumnentitel.tex^
@@ -129,7 +129,7 @@ REM ODT
 for /r . %%i in (*.ur.md) do pandoc^
  --smart^
  --standalone^
- --biblio Quellen/Quellen.bib^
+ --bibliography Quellen/Quellen.bib^
  --csl %CSL%^
  -o %ODIR%/%%~nxi.win.odt %%~fi
 
@@ -140,7 +140,7 @@ for /r . %%i in (*.ur.md) do pandoc^
  --toc^
  --number-sections^
  -t html5^
- --biblio Quellen/Quellen.bib^
+ --bibliography Quellen/Quellen.bib^
  --csl %CSL%^
  -c %URGRID%^
  -c %URHTMCSS%^
