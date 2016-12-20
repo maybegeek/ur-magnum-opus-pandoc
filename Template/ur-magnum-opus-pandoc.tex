@@ -33,7 +33,7 @@ $endif$
 ]{EBGaramond}
 
 \setsansfont[%
-%  RawFeature=-calt,%disable Q.long + contextual alternatives 
+%  RawFeature=-calt,%disable Q.long + contextual alternatives
   Path=./Template/Fonts/EBGaramond/otf/,%
   UprightFont=EBGaramond12-Regular.otf,%
   BoldFont=EBGaramond12-Regular.otf,%
@@ -87,7 +87,9 @@ pages=true,%
 series=true,%
 ibidtracker=false,%
 filmruntime=true,%
-citefilm=full%
+citefilm=full,%
+useprefix=false,%
+sortcites=true%
 ]{biblatex}
 
 $for(bibliography)$
@@ -191,7 +193,7 @@ $endfor$
 \deffootnote[2em]{2em}{2.2em}{\thefootnotemark\ }
 %
 \usepackage{varioref}
-% 
+%
 \renewcommand*{\sectionmarkformat}{}
 %
 \makeatletter
@@ -334,7 +336,7 @@ $endfor$
           {\printnames{labelname}%
            \setunit{\nameyeardelim}}%
         \printfield{year}\iffieldundef{origyear}{}{\printtext{/}\printorigdate}}}%
-    {\usebibmacro{cite:shorthand}}}    
+    {\usebibmacro{cite:shorthand}}}
 %
 %
 \renewbibmacro*{textcite}{%
@@ -525,7 +527,7 @@ $endif$
 \addcontentsline{toc}{section}{Eidesstattliche Erklärung}
 
 
-Ich habe die Arbeit selbständig verfasst, keine anderen als die angegebenen 
+Ich habe die Arbeit selbständig verfasst, keine anderen als die angegebenen
 Quellen und Hilfsmittel benutzt und die Arbeit bisher keiner anderen
 Prüfungsbehörde vorgelegt.
 
