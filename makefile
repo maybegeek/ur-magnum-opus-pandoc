@@ -29,9 +29,9 @@ TEX_O        := --output-directory=$(OUT)
 define TEX_TMPL
  --standalone --latex-engine=xelatex \
 	--no-tex-ligatures --number-sections \
-	--biblio Quellen/Quellen.bib -Vlot -Vlof \
+	--bibliography Quellen/Quellen.bib -Vlot -Vlof \
 	--template=Template/ur-magnum-opus-pandoc.tex \
-	Template/metadata.yaml --biblatex 
+	Template/metadata.yaml --biblatex
 endef
 define TEX_RM
 $(OUT)/*.aux $(OUT)/*.bbl $(OUT)/*.bcf $(OUT)/*.blg $(OUT)/*.lof $(OUT)/*.log $(OUT)/*.lot $(OUT)/*.out $(OUT)/*.run.xml $(OUT)/*.toc
@@ -117,7 +117,7 @@ html : $(HTM) $(HTMUR)
 
 # ODT
 %.ur.md.odt : %.ur.md
-	@pandoc --smart --standalone --toc --biblio Quellen/Quellen.bib --csl $(CSL) \
+	@pandoc --smart --standalone --toc --bibliography Quellen/Quellen.bib --csl $(CSL) \
 	--reference-odt=$(ODTREF) \
 	$< -o $(OUT)/$@
 	@echo '* neue ODT erstellt'
@@ -125,7 +125,7 @@ html : $(HTM) $(HTMUR)
 
 # ODT UNI
 %.ur.md.uni.odt : %.ur.md
-	@pandoc --smart --standalone --toc --biblio Quellen/Quellen.bib --csl $(CSL) \
+	@pandoc --smart --standalone --toc --bibliography Quellen/Quellen.bib --csl $(CSL) \
 	--template=$(ODTTMPL) \
 	--reference-odt=$(ODTREF) \
 	$< -o $(OUT)/$@
@@ -135,7 +135,7 @@ html : $(HTM) $(HTMUR)
 # HTML (for offline use)
 %.ur.md.htm : %.ur.md
 	@pandoc --smart --standalone --toc --number-sections -t html5 \
-	--biblio Quellen/Quellen.bib --csl $(CSL) -c $(URGRID) -c $(URHTMCSS) \
+	--bibliography Quellen/Quellen.bib --csl $(CSL) -c $(URGRID) -c $(URHTMCSS) \
 	-H $(URWEBFONT) -B $(URHTMINCB) -A $(URHTMINCA) \
 	-V lang='de' --self-contained \
 	$< -o $(OUT)/$@
@@ -146,7 +146,7 @@ html : $(HTM) $(HTMUR)
 %.ur.md.uni.htm : %.ur.md
 	@pandoc \
 	--smart --standalone --toc --number-sections -t html5 \
-	--biblio Quellen/Quellen.bib --csl $(CSL) -c $(URGRID) -c $(URHTMCSS) \
+	--bibliography Quellen/Quellen.bib --csl $(CSL) -c $(URGRID) -c $(URHTMCSS) \
 	-H $(URWEBFONT) -B $(URHTMINCBB) -B $(URHTMINCB) -A $(URHTMINCA) \
 	-V lang='de' --self-contained \
 	--template=Template/HTML/html-template.htm \
