@@ -89,9 +89,11 @@ ibidtracker=false,%
 filmruntime=true,%
 citefilm=full%
 ]{biblatex}
-$if(biblio-files)$
-\bibliography{$biblio-files$}
-$endif$
+
+$for(bibliography)$
+\addbibresource{$bibliography$}
+$endfor$
+
 
 
 $if(listings)$
