@@ -1,5 +1,5 @@
 # # # # # # # # # # # # #
-# ur-magnus-opus-pandoc #
+# ur-magnum-opus-pandoc #
 # makefile for Linux    #
 # # # # # # # # # # # # #
 TEX          := $(patsubst %.md,%.md.latex.tex,$(wildcard *.ur.md))
