@@ -26,7 +26,7 @@ ur-fachsemester: '3'
 ur-kombi: 'Medienwissenschaft (Informationswissenschaft/Medieninformatik)'
 ur-modul: 'M-05'
 
-## alle Qullen anzeigen
+## alle Quellen anzeigen
 nocite: TRUE
 ...
 
@@ -121,7 +121,7 @@ Fieberhaft irrten seine Augen durch die nächtliche Dunkelheit und suchten einen
 
 Er konnte die Aufforderung stehen zu bleiben schon hören. Gehetzt sah er sich um. Plötzlich erblickte er den schmalen Durchgang. Blitzartig drehte er sich nach rechts und verschwand zwischen den beiden Gebäuden. Beinahe wäre er dabei über den umgestürzten Mülleimer gefallen, der mitten im Weg lag.
 
-# Bevor zum Anschluss
+# Bevor zum Abschluss
 
 Er hörte leise Schritte hinter sich. Das bedeutete nichts Gutes. Wer würde ihm schon folgen, spät in der Nacht und dazu noch in dieser engen Gasse mitten im übel beleumundeten Hafenviertel? Gerade jetzt, wo er das Ding seines Lebens gedreht hatte und mit der Beute verschwinden wollte!
 
@@ -147,4 +147,3 @@ An der Zeit auch mal ein Bild zu verwenden.
 ![Logo der Universität Regensburg (jpg)](Bilder/ur-logo.jpg "Logo der Universität Regensburg")
 
 ![Logo der Universität Regensburg (pdf)](Bilder/ur-logo.pdf "Logo der Universität Regensburg")
-
